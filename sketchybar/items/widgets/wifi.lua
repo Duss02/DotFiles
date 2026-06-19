@@ -26,7 +26,7 @@ local wifi_up = sbar.add("item", "widgets.wifi1", {
       style = settings.font.style_map["Bold"],
       size = 9.0,
     },
-    color = colors.red,
+    color = colors.white,
     string = "??? Bps",
   },
   y_offset = 4,
@@ -49,7 +49,7 @@ local wifi_down = sbar.add("item", "widgets.wifi2", {
       style = settings.font.style_map["Bold"],
       size = 9.0,
     },
-    color = colors.blue,
+    color = colors.white,
     string = "??? Bps",
   },
   y_offset = -4,
@@ -67,7 +67,7 @@ local wifi_bracket = sbar.add("bracket", "widgets.wifi.bracket", {
   wifi_down.name
 }, {
   background = { color = colors.bg1 },
-  popup = { align = "center", height = 30 }
+  popup = { align = "center", height = 25 }
 })
 
 local ssid = sbar.add("item", {
@@ -155,8 +155,8 @@ local router = sbar.add("item", {
 sbar.add("item", { position = "right", width = settings.group_paddings })
 
 wifi_up:subscribe("network_update", function(env)
-  local up_color = (env.upload == "000 Bps") and colors.grey or colors.red
-  local down_color = (env.download == "000 Bps") and colors.grey or colors.blue
+  local up_color = (env.upload == "000 Bps") and colors.grey or colors.white
+  local down_color = (env.download == "000 Bps") and colors.grey or colors.white
   wifi_up:set({
     icon = { color = up_color },
     label = {
@@ -179,7 +179,7 @@ wifi:subscribe({"wifi_change", "system_woke"}, function(env)
     wifi:set({
       icon = {
         string = connected and icons.wifi.connected or icons.wifi.disconnected,
-        color = connected and colors.white or colors.red,
+        color = connected and colors.white or colors.white,
       },
     })
   end)
@@ -218,17 +218,3 @@ wifi_down:subscribe("mouse.clicked", toggle_details)
 wifi:subscribe("mouse.clicked", toggle_details)
 wifi:subscribe("mouse.exited.global", hide_details)
 
-local function copy_label_to_clipboard(env)
-  local label = sbar.query(env.NAME).label.value
-  sbar.exec("echo \"" .. label .. "\" | pbcopy")
-  sbar.set(env.NAME, { label = { string = icons.clipboard, align="center" } })
-  sbar.delay(1, function()
-    sbar.set(env.NAME, { label = { string = label, align = "right" } })
-  end)
-end
-
-ssid:subscribe("mouse.clicked", copy_label_to_clipboard)
-hostname:subscribe("mouse.clicked", copy_label_to_clipboard)
-ip:subscribe("mouse.clicked", copy_label_to_clipboard)
-mask:subscribe("mouse.clicked", copy_label_to_clipboard)
-router:subscribe("mouse.clicked", copy_label_to_clipboard)

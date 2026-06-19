@@ -3,7 +3,7 @@ return {
   white = 0xffe2e2e3,
   red = 0xfffc5d7c,
   green = 0xff9ed072,
-  blue = 0xff76cce0,
+  blue = 0xff007bff,
   yellow = 0xffe7c664,
   orange = 0xfff39660,
   magenta = 0xffb39df3,
@@ -18,7 +18,8 @@ return {
     bg = 0x262B36FF,
     border = 0xfafafaff
   },
-  bg1 = 0x61a4adff,
+  -- 0x61a4adaa bg1
+  bg1 = 0x00000000,
   bg2 = 0xff414550,
 
   with_alpha = function(color, alpha)

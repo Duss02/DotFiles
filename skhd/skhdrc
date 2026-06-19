@@ -16,7 +16,7 @@ shift + alt - p : yabai -m space --mirror x-axis
 shift + alt - e : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # rotate layout clockwise
-shift + alt - r : yabai -m space --rotate 270        
+shift + alt - r : yabai -m space --rotate 270
 
 # maximize a window
 shift + alt - m : yabai -m window --toggle zoom-fullscreen
@@ -34,30 +34,46 @@ cmd + alt - a : yabai -m window --warp west
 cmd + alt - d : yabai -m window --warp east
 
 
-shift + alt - k : yabai -m window --space prev;
-shift + alt - l : yabai -m window --space next;
+#shift + alt - k : yabai -m window --space prev;
+#shift + alt - l : yabai -m window --space next;
 
-shift + alt - 0 : yabai --stop-service 
-shift + alt - 1 : yabai --start-service
-shift + alt - 2 : yabai --restart-service 
+# close window
+cmd + alt - w : yabai -m window --close
+
 
 #-----SPACES---------
 
 #move between spaces 
-#cmd + alt - 1 : yabai -m space --focus 1
-#cmd + alt - 2 : yabai -m space --focus 2
-#cmd + alt - 3 : yabai -m space --focus 3
-#cmd + alt - 4 : yabai -m space --focus 4
-#cmd + alt - 5 : yabai -m space --focus 5
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
 
 # delete focused space
-#cmd + alt - q : yabai -m space --destroy
+alt - l : yabai -m space 1 --destroy
+
+shift + alt - 1 : yabai -m window --space 1 --focus
+shift + alt - 2 : yabai -m window --space 2 --focus
+shift + alt - 3 : yabai -m window --space 3 --focus
+shift + alt - 4 : yabai -m window --space 4 --focus
+shift + alt - 5 : yabai -m window --space 5 --focus
+shift + alt - 6 : yabai -m window --space 6 --focus
+
 
 # create a new space and follow focus
-#cmd + alt - m : yabai -m space --create && \
-#                  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
-#                  yabai -m space --focus "${index}"
+alt - m : yabai -m space --create && \
+                  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
+                  yabai -m space --focus "${index}"
+
+# Toggle bar visibility
+alt - b : ~/.config/skhd/show_bar.sh
+shift + alt - b : ~/.config/skhd/toggle_bar.sh
 
 
 
-cmd - return : WezTerm
+
+shift + alt - o : ~/.config/skhd/wup.sh
+shift + alt - k : ~/.config/skhd/sdown.sh
+shift + alt - j : ~/.config/skhd/toggle_bar.sh

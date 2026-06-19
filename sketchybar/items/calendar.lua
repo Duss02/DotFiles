@@ -38,7 +38,7 @@ local cal = sbar.add("item", {
 sbar.add("bracket", { cal.name }, {
   background = {
     color = colors.transparent,
-    height = 30,
+    height = 25,
     border_color = colors.transparent,
     border_width = 0;
   }
